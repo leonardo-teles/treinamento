@@ -31,6 +31,7 @@ public class Transacao implements Serializable {
 	private Instant dataTransacao;
 	
 	@NotNull
+	@Column(name = "tipo_transacao")
 	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipo;
 	
