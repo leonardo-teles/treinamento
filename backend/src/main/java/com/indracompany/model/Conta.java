@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.indracompany.enums.TipoConta;
@@ -30,21 +29,16 @@ public class Conta implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
 	private String agencia;
 	
-	@NotNull
 	private String numero;
 	
-	@NotNull
 	private BigDecimal saldo;
 	
-	@NotNull
 	@Column(name = "tipo_conta")
 	@Enumerated(EnumType.STRING)
 	private TipoConta tipo;	
 
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;

@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import com.indracompany.enums.TipoTransacao;
 
@@ -30,17 +29,14 @@ public class Transacao implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dataTransacao;
 	
-	@NotNull
 	@Column(name = "tipo_transacao")
 	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipo;
 	
-	@NotNull
 	private BigDecimal valor;
 	
 	private String informacoes;
 	
-	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "conta_id")
 	private Conta conta;
