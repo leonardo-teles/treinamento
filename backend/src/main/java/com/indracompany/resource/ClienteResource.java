@@ -26,7 +26,9 @@ import com.indracompany.dto.ClienteDTO;
 import com.indracompany.dto.ContaDTO;
 import com.indracompany.dto.cliente.ClienteAtualizadoDTO;
 import com.indracompany.dto.cliente.ClienteNovoDTO;
+import com.indracompany.model.Cliente;
 import com.indracompany.model.Conta;
+import com.indracompany.resource.util.URL;
 import com.indracompany.service.ClienteService;
 import com.indracompany.service.ContaService;
 
@@ -53,6 +55,23 @@ public class ClienteResource {
 		
 		return ResponseEntity.ok().body(list);
 	}
+	
+	@GetMapping(value = "/buscar-por-nome")
+	public ResponseEntity<Page<ClienteDTO>> buscarPorNome(
+			@RequestParam(value = "nome", defaultValue = "") String nome, 
+			@RequestParam(value = "pagina", defaultValue = "0") Integer page,
+			@RequestParam(value = "linhasPorPagina", defaultValue = "12") Integer linesPerPage,
+			@RequestParam(value = "direcao", defaultValue = "ASC") String direction,
+			@RequestParam(value = "ordenarPor", defaultValue = "nome") String orderBy
+			) {
+		
+		String nomeDecoded = URL.decodeParam(nome);
+		
+		Page<Cliente> lista = clienteService.buscarPorNome(nomeDecoded, page, linesPerPage, orderBy, direction);
+		Page<ClienteDTO> listaDto = lista.map(obj -> new ClienteDTO(obj));
+		
+		return ResponseEntity.ok().body(listaDto);
+	}	
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Long id) {

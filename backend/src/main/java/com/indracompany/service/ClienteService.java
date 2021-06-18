@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,6 +51,13 @@ public class ClienteService {
 		Cliente cliente = opt.orElseThrow(() -> new ObjectNotFoundException("Cliente de CPF nº " + cpf + " não encontrado."));
 		
 		return new ClienteDTO(cliente);
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<Cliente> buscarPorNome(String nome, Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		
+		return clienteRepository.findByNomeContaining(nome, pageRequest);
 	}
 	
 	@Transactional
