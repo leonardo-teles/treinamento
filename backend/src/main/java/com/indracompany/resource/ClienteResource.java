@@ -1,6 +1,8 @@
 package com.indracompany.resource;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -20,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.indracompany.dto.ClienteAtualizadoDTO;
 import com.indracompany.dto.ClienteDTO;
-import com.indracompany.dto.ClienteNovoDTO;
+import com.indracompany.dto.ContaDTO;
+import com.indracompany.dto.cliente.ClienteAtualizadoDTO;
+import com.indracompany.dto.cliente.ClienteNovoDTO;
+import com.indracompany.model.Conta;
 import com.indracompany.service.ClienteService;
+import com.indracompany.service.ContaService;
 
 @RestController
 @RequestMapping(value = "/clientes")
@@ -31,6 +36,9 @@ public class ClienteResource {
 
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private ContaService contaService;
 	
 	@GetMapping
 	public ResponseEntity<Page<ClienteDTO>> listarTodos(
@@ -52,6 +60,14 @@ public class ClienteResource {
 		
 		return ResponseEntity.ok().body(dto);
 	}
+	
+	@GetMapping(value="/{clienteId}/contas")
+	public ResponseEntity<List<ContaDTO>> listarContas(@PathVariable Long clienteId) {
+		List<Conta> lista = contaService.buscarPorCliente(clienteId);
+		List<ContaDTO> listaDto = lista.stream().map(conta -> new ContaDTO(conta)).collect(Collectors.toList());  
+		
+		return ResponseEntity.ok().body(listaDto);
+	}	
 	
 	@PostMapping
 	public ResponseEntity<ClienteDTO> inserir(@Valid @RequestBody ClienteNovoDTO dto) {

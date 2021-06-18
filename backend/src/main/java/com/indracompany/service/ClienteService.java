@@ -13,9 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.indracompany.dto.ClienteAtualizadoDTO;
 import com.indracompany.dto.ClienteDTO;
-import com.indracompany.dto.ClienteNovoDTO;
+import com.indracompany.dto.cliente.ClienteAtualizadoDTO;
+import com.indracompany.dto.cliente.ClienteNovoDTO;
 import com.indracompany.model.Cliente;
 import com.indracompany.repository.ClienteRepository;
 import com.indracompany.service.exception.DatabaseException;
@@ -48,7 +48,6 @@ public class ClienteService {
 		Cliente cliente = new Cliente();
 		
 		BeanUtils.copyProperties(dto, cliente);
-		//converterDto(dto, cliente);
 		
 		cliente = clienteRepository.save(cliente);
 		
@@ -61,7 +60,6 @@ public class ClienteService {
 			Cliente cliente = clienteRepository.getOne(id);	
 			
 			BeanUtils.copyProperties(dto, cliente, "id");
-			//converterDto(dto, cliente);
 			
 			cliente = clienteRepository.save(cliente);
 			
@@ -81,14 +79,5 @@ public class ClienteService {
 		} catch(DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação de integridade de dados");
 		}
-	}
-
-	@SuppressWarnings("unused")
-	private void converterDto(ClienteDTO dto, Cliente cliente) {
-		cliente.setNome(dto.getNome());
-		cliente.setCpf(dto.getCpf());
-		cliente.setEmail(dto.getEmail());
-		cliente.setAtivo(dto.getAtivo());
-		cliente.setObservacoes(dto.getObservacoes());
 	}
 }

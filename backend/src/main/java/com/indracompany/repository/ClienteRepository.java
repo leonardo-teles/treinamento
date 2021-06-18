@@ -8,6 +8,6 @@ import com.indracompany.model.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
-	Cliente findByEmail(String email);
-	Cliente findByCpf(String cpf);
+	public Cliente findByEmail(String email);
+	public Cliente findByCpf(String cpf);
 }

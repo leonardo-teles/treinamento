@@ -11,7 +11,7 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerMapping;
 
-import com.indracompany.dto.ClienteAtualizadoDTO;
+import com.indracompany.dto.cliente.ClienteAtualizadoDTO;
 import com.indracompany.model.Cliente;
 import com.indracompany.repository.ClienteRepository;
 import com.indracompany.resource.exception.FieldMessage;

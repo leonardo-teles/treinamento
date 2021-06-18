@@ -8,7 +8,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.indracompany.dto.ClienteNovoDTO;
+import com.indracompany.dto.cliente.ClienteNovoDTO;
 import com.indracompany.model.Cliente;
 import com.indracompany.repository.ClienteRepository;
 import com.indracompany.resource.exception.FieldMessage;

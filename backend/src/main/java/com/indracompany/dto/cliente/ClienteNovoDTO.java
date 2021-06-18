@@ -1,5 +1,6 @@
-package com.indracompany.dto;
+package com.indracompany.dto.cliente;
 
+import com.indracompany.dto.ClienteDTO;
 import com.indracompany.service.validation.ClienteNovo;
 
 @ClienteNovo
