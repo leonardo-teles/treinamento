@@ -2,6 +2,7 @@ package com.indracompany.service.validation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -27,7 +28,7 @@ public class ClienteNovoValidator implements ConstraintValidator<ClienteNovo, Cl
 		List<FieldMessage> lista = new ArrayList<>();
 		
 		Cliente emailCli = clienteRepository.findByEmail(dto.getEmail());
-		Cliente cpfCli = clienteRepository.findByCpf(dto.getCpf());
+		Optional<Cliente> cpfCli = clienteRepository.findByCpf(dto.getCpf());
 		
 		if(emailCli != null) {
 			lista.add(new FieldMessage("email", "e-Mail já existe."));

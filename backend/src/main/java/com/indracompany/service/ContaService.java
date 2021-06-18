@@ -42,12 +42,6 @@ public class ContaService {
 	}
 
 	public Conta inserir(Conta conta) {
-		
-		
-		
-		
-		
-		
 		return null;
 	}
 }

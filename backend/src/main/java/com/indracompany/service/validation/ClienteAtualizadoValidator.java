@@ -3,6 +3,7 @@ package com.indracompany.service.validation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintValidator;
@@ -37,13 +38,13 @@ public class ClienteAtualizadoValidator implements ConstraintValidator<ClienteAt
 		List<FieldMessage> lista = new ArrayList<>();
 		
 		Cliente emailCli = clienteRepository.findByEmail(dto.getEmail());
-		Cliente cpfCli = clienteRepository.findByCpf(dto.getCpf());
+		Optional<Cliente> cpfCli = clienteRepository.findByCpf(dto.getCpf());
 		
 		if(emailCli != null && uirId != emailCli.getId()) {
 			lista.add(new FieldMessage("email", "e-Mail já existe."));
 		}
 		
-		if(cpfCli != null && uirId != cpfCli.getId()) { 
+		if(cpfCli != null) { 
 			lista.add(new FieldMessage("cpf", "CPF já existe.")); 
 		}
 		

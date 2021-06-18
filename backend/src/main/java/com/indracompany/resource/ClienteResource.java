@@ -60,6 +60,13 @@ public class ClienteResource {
 		
 		return ResponseEntity.ok().body(dto);
 	}
+
+	@GetMapping(value = "/buscar-por-cpf/{cpf}")
+	public ResponseEntity<ClienteDTO> buscarPorCpf(@PathVariable String cpf) {
+		ClienteDTO dto = clienteService.buscarPorCpf(cpf);
+		
+		return ResponseEntity.ok().body(dto);
+	}
 	
 	@GetMapping(value="/{clienteId}/contas")
 	public ResponseEntity<List<ContaDTO>> listarContas(@PathVariable Long clienteId) {

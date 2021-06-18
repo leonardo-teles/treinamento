@@ -42,6 +42,15 @@ public class ClienteService {
 		
 		return new ClienteDTO(cliente);
 	}
+
+	@Transactional(readOnly = true)
+	public ClienteDTO buscarPorCpf(String cpf) {
+		Optional<Cliente> opt = clienteRepository.findByCpf(cpf);
+		
+		Cliente cliente = opt.orElseThrow(() -> new ObjectNotFoundException("Cliente de CPF nº " + cpf + " não encontrado."));
+		
+		return new ClienteDTO(cliente);
+	}
 	
 	@Transactional
 	public ClienteDTO inserir(ClienteNovoDTO dto) {
