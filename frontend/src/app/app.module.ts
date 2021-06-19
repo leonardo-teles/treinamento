@@ -11,12 +11,14 @@ import {TooltipModule} from 'primeng/tooltip';
 
 import { ClientePesquisarComponent } from './cliente-pesquisar/cliente-pesquisar.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ContaPesquisarComponent } from './conta-pesquisar/conta-pesquisar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientePesquisarComponent,
-    NavbarComponent
+    NavbarComponent,
+    ContaPesquisarComponent
   ],
   imports: [
     BrowserModule,
