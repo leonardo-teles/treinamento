@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  color: #404C51;
+  margin: 0;
+}
+
+label {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 1600px) {
+  .container {
+    width: 1570px;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .col-valor-header {
+    width: 120px;
+  }
+
+  .col-cpf {
+    width: 150px;
+  }
+
+  .col-email {
+    width: 300px;
+  }
+  .col-status {
+    width: 100px;
+  }
+
+  .col-acoes-header {
+    width: 115px;
+  }
+
+  .col-acoes {
+    width: 115px;
+    text-align: center !important;
+  }
+
+  .col-acoes .p-button {
+    margin: 1px;
+  }
+}

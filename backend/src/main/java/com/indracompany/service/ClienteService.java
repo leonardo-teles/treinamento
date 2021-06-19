@@ -57,7 +57,7 @@ public class ClienteService {
 	public Page<Cliente> buscarPorNome(String nome, Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
 		
-		return clienteRepository.findByNomeContaining(nome, pageRequest);
+		return clienteRepository.buscarPorNome(nome, pageRequest);
 	}
 	
 	@Transactional
